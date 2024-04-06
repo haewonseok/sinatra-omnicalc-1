@@ -28,3 +28,15 @@ get("/square_root/results") do
   
   erb(:square_root_results)
 end
+
+get("/random/new") do
+  erb(:random_new)
+end
+
+get("/random/results") do
+  @min = params.fetch("users_min").to_f
+  @max = params.fetch("users_max").to_f
+  @the_result = rand(@min..@max)
+  
+  erb(:random_results)
+end
