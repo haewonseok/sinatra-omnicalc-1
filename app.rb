@@ -40,3 +40,16 @@ get("/random/results") do
   
   erb(:random_results)
 end
+
+get("/payment/new") do
+  erb(:payment_new)
+end
+
+get("/payment/results") do
+  @apr = params.fetch("apr").to_f
+  @years = params.fetch("years").to_f
+  @principal = params.fetch("principal").to_f
+  @the_result = (@apr/100/12 * @principal) / (1 - (1 + @apr/100/12) ** ((-12) * @years))
+  
+  erb(:payment_results)
+end
